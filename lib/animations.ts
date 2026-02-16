@@ -1,5 +1,5 @@
 // Reusable animation variants for the application
-import type { Variants } from "framer-motion";
+import type { Variants } from "motion/react";
 
 // Ultra-smooth easing curves for fluid animations
 const smoothEase = [0.25, 0.1, 0.25, 1] as const; // Smooth ease-in-out
