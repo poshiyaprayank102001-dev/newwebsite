@@ -19,8 +19,8 @@ export default function ProductsPage() {
   }, []);
 
   return (
-    <div className="w-full overflow-hidden">
-      <div className="container mx-auto max-w-[1600px]">
+    <div className="w-full min-h-screen flex justify-center bg-black">
+      <div className="w-full max-w-[1400px] px-6 md:px-12 lg:px-16 py-16">
         <ProductHeader />
         <ProductList products={products} />
         {allGalleryImages.length > 0 && <ProductGallery images={allGalleryImages} />}
