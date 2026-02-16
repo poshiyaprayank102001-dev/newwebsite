@@ -1,13 +1,23 @@
+import TrueFocus from '@/components/react-bits/TrueFocus';
+
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen flex items-center justify-center bg-black">
       <div className="container mx-auto px-4 py-16">
-        <h1 className="text-4xl font-bold mb-8 text-foreground">
-          Welcome to Bint Website
-        </h1>
-        <p className="text-lg text-foreground/80">
-          A clean black and white theme foundation.
-        </p>
+        <div className="flex items-center justify-between max-w-5xl mx-auto gap-8">
+          <div className="flex-1 w-full text-center">
+            <TrueFocus
+              sentence="Small beginnings|Big dreams"
+              separator="|"
+              manualMode={false}
+              blurAmount={5}
+              borderColor="red"
+              glowColor="rgba(255, 0, 0, 0.6)"
+              animationDuration={0.5}
+              pauseBetweenAnimations={1}
+            />
+          </div>
+        </div>
       </div>
     </main>
   );
