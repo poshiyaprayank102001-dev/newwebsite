@@ -12,13 +12,13 @@ const Header = () => {
         sentence="Small beginnings|Big dreams"
         splitBy="|"
         separator=""
-        manualMode={false}
+        manualMode={true}
         blurAmount={5}
         borderColor="red"
         glowColor="rgba(255, 0, 0, 0.6)"
         animationDuration={0.5}
         pauseBetweenAnimations={1}
-        className="gap-20 text-3xl font-bold"
+        className="gap-20 text-3xl"
         onActiveChange={setActiveIndex}
       />
     </header>

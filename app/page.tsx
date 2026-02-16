@@ -4,20 +4,13 @@ import { useHeaderState } from "@/context/HeaderStateContext";
 import { motion, AnimatePresence } from "motion/react";
 
 const SignBoard = () => (
-  <div className="relative w-full max-w-lg aspect-[2/1] bg-neutral-800 border-4 border-neutral-700/50 shadow-2xl flex flex-col items-center justify-center p-6 text-center transform hover:scale-105 transition-transform duration-500 overflow-hidden group">
-    <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/concrete-wall.png')] opacity-20 pointer-events-none mix-blend-overlay"></div>
-    <div className="relative z-10 flex flex-col gap-2 grayscale brightness-90 contrast-125 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-500">
-      <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-neutral-300 transform -rotate-2">
-        BHATT IMPEX
-        <br />
-        PVT. LTD.
-      </h2>
-      <div className="text-[10px] md:text-xs text-neutral-400 font-mono mt-2 transform -rotate-1 opacity-70">
-        <p>Address: B-25 G.I.D.C. Industrial Estate</p>
-        <p>Tel: (0288) 2561342 Fax: (0288) 256</p>
-      </div>
-      <div className="absolute top-4 left-4 w-12 h-12 border-4 border-neutral-500 rounded-full opacity-30"></div>
-    </div>
+  // Increased size to max-w-4xl
+  <div className="relative w-full max-w-4xl aspect-[2/1] bg-neutral-800 border-4 border-neutral-700/50 shadow-2xl flex flex-col items-center justify-center overflow-hidden group">
+    <img 
+      src="/Picture1.png" 
+      alt="Bhatt Impex Pvt Ltd" 
+      className="w-full h-full object-cover grayscale brightness-90 contrast-125 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-500" 
+    />
   </div>
 );
 
@@ -34,14 +27,19 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col items-center justify-center gap-12 text-white"
+            className="flex flex-col items-center justify-center gap-12 text-white w-full px-4"
           >
-            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <span className="text-2xl md:text-3xl font-light tracking-wide text-white/80">Founded</span>
+            {/* Main Content Wrapper with diagonal text */}
+            <div className="relative w-full max-w-4xl mx-auto my-8 md:px-0">
+              <span className="absolute -top-12 left-0 md:top-0 md:-left-40 text-2xl md:text-3xl font-bold tracking-wide text-white/80 whitespace-nowrap">
+                Founded
+              </span>
               
               <SignBoard />
 
-              <span className="text-4xl md:text-5xl font-mono text-white/90">1986</span>
+              <span className="absolute -bottom-12 right-0 md:bottom-0 md:-right-40 text-4xl md:text-6xl font-bold font-mono text-white/90">
+                1986
+              </span>
             </div>
 
             <div className="text-center max-w-xl mx-auto space-y-2 mt-8">

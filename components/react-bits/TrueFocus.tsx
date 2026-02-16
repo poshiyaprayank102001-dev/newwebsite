@@ -176,6 +176,7 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
               color: 'white',
               transition: `filter ${animationDuration}s ease-in-out, opacity ${animationDuration}s ease-in-out`,
               textShadow: isActive ? '0 0 10px rgba(255, 255, 255, 0.5)' : 'none',
+              fontWeight: isActive ? '900' : '400',
             }}
           >
             {word}
