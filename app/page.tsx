@@ -8,13 +8,15 @@ export default function Home() {
           <div className="flex-1 w-full text-center">
             <TrueFocus
               sentence="Small beginnings|Big dreams"
-              separator="|"
+              splitBy="|"
+              separator=""
               manualMode={false}
               blurAmount={5}
               borderColor="red"
               glowColor="rgba(255, 0, 0, 0.6)"
               animationDuration={0.5}
               pauseBetweenAnimations={1}
+              className="gap-20 text-5xl"
             />
           </div>
         </div>

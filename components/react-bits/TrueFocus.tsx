@@ -12,6 +12,8 @@ interface TrueFocusProps {
   glowColor?: string;
   animationDuration?: number;
   pauseBetweenAnimations?: number;
+  className?: string;
+  splitBy?: string;
 }
 
 interface FocusRect {
@@ -30,8 +32,10 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
   glowColor = 'rgba(255, 255, 255, 0.8)',
   animationDuration = 0.5,
   pauseBetweenAnimations = 1,
+  className = '',
+  splitBy = '',
 }) => {
-  const words = sentence.split(separator);
+  const words = sentence.split(splitBy || separator);
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [focusRect, setFocusRect] = useState<FocusRect | null>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -144,13 +148,19 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
   const bracketThickness = 3;
 
   return (
-    <div ref={containerRef} className="relative inline-flex flex-wrap items-center gap-3 text-5xl font-bold" style={{ color: 'white' }}>
+    <div
+      ref={containerRef}
+      className={`relative flex gap-12 items-center justify-center flex-wrap font-bold ${className}`}
+      style={{ color: 'white' }}
+    >
       {words.map((word, index) => {
         const isActive = hoveredIndex === index || (hoveredIndex === null && activeIndex === index);
         return (
           <span
             key={index}
-            ref={(el) => (wordRefs.current[index] = el)}
+            ref={(el) => {
+              if (el) wordRefs.current[index] = el;
+            }}
             className="inline-block cursor-pointer"
             onMouseEnter={() => handleWordHover(index)}
             onMouseLeave={handleWordLeave}
