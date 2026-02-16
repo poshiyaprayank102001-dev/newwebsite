@@ -110,61 +110,92 @@ const TodaySection = () => (
   </motion.div>
 );
 
-const MapComponent = () => (
-  <div className="relative w-full max-w-4xl aspect-[2/1] bg-[#0a0a0a] border-4 border-neutral-800 shadow-2xl overflow-hidden group">
-    {/* Abstract Map Background */}
-    <div 
-      className="absolute inset-0 opacity-20"
-      style={{
-        backgroundImage: `url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/World_map_blank_without_borders.svg/2000px-World_map_blank_without_borders.svg.png')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        filter: 'invert(1) contrast(1.5)'
-      }}
-    />
-    
-    {/* Animated Dots/Connections */}
-    {[
-      { top: '30%', left: '20%' }, // North America
-      { top: '40%', left: '25%' }, // US East
-      { top: '60%', left: '30%' }, // South America
-      { top: '35%', left: '50%' }, // Europe
-      { top: '45%', left: '55%' }, // Middle East
-      { top: '50%', left: '70%' }, // India
-      { top: '40%', left: '80%' }, // China
-      { top: '70%', left: '85%' }, // Australia
-    ].map((pos, i) => (
-      <motion.div
-        key={i}
-        className="absolute w-2 h-2 bg-green-500 rounded-full shadow-[0_0_10px_rgba(34,197,94,0.8)]"
-        style={pos}
-        animate={{
-          scale: [1, 1.5, 1],
-          opacity: [0.5, 1, 0.5],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          delay: i * 0.2,
-          ease: "easeInOut"
+const MapComponent = () => {
+  // Coordinates based on a 1000x525 SVG coordinate system
+  const locations = [
+    { name: "USA", x: 250, y: 190 }, 
+    { name: "Europe", x: 500, y: 150 }, 
+    { name: "UAE", x: 610, y: 230 }, 
+    { name: "India", x: 680, y: 250 }, 
+    { name: "Asia", x: 800, y: 210 }, 
+  ];
+
+  return (
+    <div className="relative w-full aspect-[1.9/1] bg-[#080808] border border-neutral-800/50 rounded-2xl overflow-hidden group shadow-2xl">
+      {/* Map Background */}
+      <div 
+        className="absolute inset-0 opacity-30 transition-opacity duration-500 group-hover:opacity-50"
+        style={{
+          backgroundImage: `url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg')`,
+          backgroundSize: '100% 100%',
+          backgroundPosition: 'center',
+          filter: 'invert(1) grayscale(1) brightness(1.2) contrast(1.1)',
         }}
       />
-    ))}
-    
-    {/* Connecting lines simulation */}
-    <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-30">
-      <motion.path
-        d="M 250 150 Q 400 50 600 200" // Rough path NA to Europe/Asia
-        fill="transparent"
-        stroke="#22c55e"
-        strokeWidth="1"
-        initial={{ pathLength: 0 }}
-        animate={{ pathLength: 1 }}
-        transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-      />
-    </svg>
-  </div>
-);
+      
+      {/* SVG Overlay */}
+      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1000 525" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="rgba(34, 197, 94, 0)" />
+            <stop offset="50%" stopColor="rgba(34, 197, 94, 0.8)" />
+            <stop offset="100%" stopColor="rgba(34, 197, 94, 0)" />
+          </linearGradient>
+        </defs>
+
+        {/* Curved Connection Lines */}
+        <motion.g
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          {/* USA -> Europe */}
+          <motion.path d={`M ${locations[0].x} ${locations[0].y} Q 375 70 ${locations[1].x} ${locations[1].y}`}
+            fill="none" stroke="url(#line-gradient)" strokeWidth="2"
+            initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1.5, delay: 0.5 }}
+          />
+          {/* Europe -> UAE */}
+          <motion.path d={`M ${locations[1].x} ${locations[1].y} Q 560 180 ${locations[2].x} ${locations[2].y}`}
+            fill="none" stroke="url(#line-gradient)" strokeWidth="2"
+            initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1.2, delay: 1.2 }}
+          />
+          {/* UAE -> India */}
+          <motion.path d={`M ${locations[2].x} ${locations[2].y} Q 645 270 ${locations[3].x} ${locations[3].y}`}
+            fill="none" stroke="url(#line-gradient)" strokeWidth="2"
+            initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1, delay: 1.8 }}
+          />
+          {/* India -> Asia */}
+          <motion.path d={`M ${locations[3].x} ${locations[3].y} Q 740 200 ${locations[4].x} ${locations[4].y}`}
+            fill="none" stroke="url(#line-gradient)" strokeWidth="2"
+            initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1.2, delay: 2.2 }}
+          />
+        </motion.g>
+
+        {/* Location Dots & Labels */}
+        {locations.map((loc, i) => (
+          <g key={i}>
+            {/* Pulse */}
+            <motion.circle cx={loc.x} cy={loc.y} r="12" stroke="#22c55e" strokeWidth="1" fill="none"
+              initial={{ scale: 0, opacity: 1 }} animate={{ scale: 2.5, opacity: 0 }}
+              transition={{ duration: 2, repeat: Infinity, delay: i * 0.5 }}
+            />
+            {/* Core Dot */}
+            <motion.circle cx={loc.x} cy={loc.y} r="5" fill="#22c55e"
+              initial={{ scale: 0 }} whileInView={{ scale: 1 }} transition={{ delay: 0.5 + (i * 0.3), type: "spring" }}
+            />
+            {/* Label */}
+            <motion.text x={loc.x} y={loc.y + 25} textAnchor="middle" fill="white" fontSize="14" fontWeight="600"
+              initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 + (i * 0.3) }}
+              className="uppercase tracking-wider shadow-black drop-shadow-md" style={{ textShadow: '0 2px 4px black' }}
+            >
+              {loc.name}
+            </motion.text>
+          </g>
+        ))}
+      </svg>
+    </div>
+  );
+};
 
 import { Factory, Anchor, Globe, Leaf } from "lucide-react";
 
