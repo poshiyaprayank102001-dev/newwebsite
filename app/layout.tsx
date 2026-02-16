@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/Header";
+import HeaderWrapper from "@/components/HeaderWrapper";
 import { HeaderStateProvider } from "@/context/HeaderStateContext";
 
 export const metadata: Metadata = {
@@ -17,10 +17,8 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className="antialiased bg-black text-white">
         <HeaderStateProvider>
-          <Header />
-          <main className="pt-40 min-h-screen">
-            {children}
-          </main>
+          <HeaderWrapper />
+          {children}
         </HeaderStateProvider>
       </body>
     </html>
