@@ -14,6 +14,7 @@ interface TrueFocusProps {
   pauseBetweenAnimations?: number;
   className?: string;
   splitBy?: string;
+  onActiveChange?: (index: number) => void;
 }
 
 interface FocusRect {
@@ -34,6 +35,7 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
   pauseBetweenAnimations = 1,
   className = '',
   splitBy = '',
+  onActiveChange,
 }) => {
   const words = sentence.split(splitBy || separator);
   const [activeIndex, setActiveIndex] = useState<number>(0);
@@ -42,6 +44,10 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
   const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    onActiveChange?.(activeIndex);
+  }, [activeIndex, onActiveChange]);
 
   const updateFocusRect = (index: number) => {
     const wordElement = wordRefs.current[index];
