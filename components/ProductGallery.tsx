@@ -12,7 +12,7 @@ export default function ProductGallery({ images }: ProductGalleryProps) {
     const containerRef = useRef<HTMLDivElement>(null);
 
     return (
-        <section className="py-24">
+        <section className="pt-32 pb-24 md:pt-40 md:pb-32">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -20,10 +20,10 @@ export default function ProductGallery({ images }: ProductGalleryProps) {
                 transition={{ duration: 0.6 }}
                 className="mb-12 text-center"
             >
-                <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+                <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 mt-6">
                     Gallery
                 </h2>
-                <p className="text-white/60 text-lg max-w-2xl mx-auto font-light">
+                <p className="text-white/60 text-lg mx-auto font-light mt-8 mb-12">
                     Explore the details and textures of our premium materials
                 </p>
             </motion.div>

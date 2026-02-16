@@ -14,9 +14,9 @@ export default function ProductHeader() {
             <h1 className="text-5xl md:text-6xl font-bold mb-4 text-white tracking-tight">
                 Our Products
             </h1>
-            <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto font-light">
+            {/* <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto font-light">
                 Discover our premium collection of innovative products designed to enhance your lifestyle
-            </p>
+            </p> */}
         </motion.div>
     );
 }

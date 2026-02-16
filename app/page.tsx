@@ -5,16 +5,16 @@ import { motion, AnimatePresence } from "motion/react";
 
 const SignBoard = () => (
   <div className="relative w-full max-w-4xl aspect-[2/1] bg-neutral-800 border-4 border-neutral-700/50 shadow-2xl flex flex-col items-center justify-center overflow-hidden group">
-    <img 
-      src="/Picture1.png" 
-      alt="Bhatt Impex Pvt Ltd" 
-      className="w-full h-full object-cover grayscale brightness-90 contrast-125 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-500" 
+    <img
+      src="/Picture1.png"
+      alt="Bhatt Impex Pvt Ltd"
+      className="w-full h-full object-cover grayscale brightness-90 contrast-125 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-500"
     />
   </div>
 );
 
 const FoundedSection = () => (
-  <motion.div 
+  <motion.div
     initial={{ opacity: 0, y: 50 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-100px" }}
@@ -22,7 +22,7 @@ const FoundedSection = () => (
     className="flex flex-col items-center justify-center gap-12 text-white w-full px-4"
   >
     <div className="relative w-full max-w-4xl mx-auto my-8 md:px-0">
-      <motion.span 
+      <motion.span
         initial={{ opacity: 0, x: 50 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.5, duration: 0.8 }}
@@ -30,10 +30,10 @@ const FoundedSection = () => (
       >
         Founded
       </motion.span>
-      
+
       <SignBoard />
 
-      <motion.span 
+      <motion.span
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.5, duration: 0.8 }}
@@ -43,7 +43,7 @@ const FoundedSection = () => (
       </motion.span>
     </div>
 
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ delay: 0.8 }}
@@ -60,7 +60,7 @@ const FoundedSection = () => (
 );
 
 const TodaySection = () => (
-  <motion.div 
+  <motion.div
     initial={{ opacity: 0, y: 50 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-100px" }}
@@ -68,7 +68,7 @@ const TodaySection = () => (
     className="flex flex-col items-center justify-center gap-12 text-white w-full px-4"
   >
     <div className="relative w-full max-w-4xl mx-auto my-8 md:px-0">
-      <motion.span 
+      <motion.span
         initial={{ opacity: 0, x: 50 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.5, duration: 0.8 }}
@@ -76,10 +76,10 @@ const TodaySection = () => (
       >
         Today
       </motion.span>
-      
+
       <SignBoard />
 
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.5, duration: 0.8 }}
@@ -94,7 +94,7 @@ const TodaySection = () => (
       </motion.div>
     </div>
 
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ delay: 0.8 }}
@@ -113,17 +113,17 @@ const TodaySection = () => (
 const MapComponent = () => {
   // Coordinates based on a 1000x525 SVG coordinate system
   const locations = [
-    { name: "USA", x: 250, y: 190 }, 
-    { name: "Europe", x: 500, y: 150 }, 
-    { name: "UAE", x: 610, y: 230 }, 
-    { name: "India", x: 680, y: 250 }, 
-    { name: "Asia", x: 800, y: 210 }, 
+    { name: "USA", x: 250, y: 190 },
+    { name: "Europe", x: 500, y: 150 },
+    { name: "UAE", x: 610, y: 230 },
+    { name: "India", x: 680, y: 250 },
+    { name: "Asia", x: 800, y: 210 },
   ];
 
   return (
     <div className="relative w-full aspect-[1.9/1] bg-[#080808] border border-neutral-800/50 rounded-2xl overflow-hidden group shadow-2xl">
       {/* Map Background */}
-      <div 
+      <div
         className="absolute inset-0 opacity-30 transition-opacity duration-500 group-hover:opacity-50"
         style={{
           backgroundImage: `url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg')`,
@@ -132,7 +132,7 @@ const MapComponent = () => {
           filter: 'invert(1) grayscale(1) brightness(1.2) contrast(1.1)',
         }}
       />
-      
+
       {/* SVG Overlay */}
       <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1000 525" preserveAspectRatio="none">
         <defs>
@@ -202,7 +202,7 @@ import { Factory, Anchor, Globe, Leaf } from "lucide-react";
 // ... (MapComponent remains same but let's tweaks filter in next step if needed, or assume it's okay)
 
 const GlobalReachSection = () => (
-  <motion.div 
+  <motion.div
     initial={{ opacity: 0, y: 50 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-100px" }}
@@ -210,7 +210,7 @@ const GlobalReachSection = () => (
     className="flex flex-col items-center justify-center gap-12 text-white w-full px-4"
   >
     <div className="relative w-full max-w-4xl mx-auto my-8 md:px-0">
-      <motion.span 
+      <motion.span
         initial={{ opacity: 0, x: 50 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.5, duration: 0.8 }}
@@ -218,10 +218,10 @@ const GlobalReachSection = () => (
       >
         Global
       </motion.span>
-      
+
       <MapComponent />
 
-      <motion.span 
+      <motion.span
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.5, duration: 0.8 }}
@@ -240,14 +240,14 @@ const GlobalReachSection = () => (
 );
 
 const ExpansionSection = () => (
-  <motion.div 
+  <motion.div
     initial={{ opacity: 0, y: 50 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-100px" }}
     transition={{ duration: 0.8, ease: "easeOut" }}
     className="flex flex-col items-center justify-center gap-16 text-white w-full px-4"
   >
-    <motion.h2 
+    <motion.h2
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ delay: 0.3 }}
@@ -305,7 +305,7 @@ export default function Home() {
             <div className="h-40" />
           </motion.div>
         )}
-        
+
         {activeIndex === 1 && (
           <motion.div
             key="big-dreams"

@@ -25,11 +25,11 @@ export default function ProductList({ products }: ProductListProps) {
                             stiffness: 80,
                             damping: 25,
                         }}
-                        className="flex flex-col md:flex-row items-start gap-8 md:gap-12"
+                        className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center"
                     >
                         {/* Image Section */}
                         <motion.div
-                            className={`w-full md:w-1/2 ${isEven ? "md:order-2" : "md:order-1"}`}
+                            className={`w-full ${isEven ? "lg:order-2" : "lg:order-1"}`}
                         >
                             <motion.div
                                 initial={{ opacity: 0, scale: 1.2, x: isEven ? 30 : -30 }}
@@ -74,7 +74,7 @@ export default function ProductList({ products }: ProductListProps) {
                                 stiffness: 80,
                                 damping: 25,
                             }}
-                            className={`w-full md:w-1/2 ${isEven ? "md:order-1" : "md:order-2"}`}
+                            className={`w-full ${isEven ? "lg:order-1" : "lg:order-2"}`}
                         >
                             <div className="space-y-6">
                                 <motion.h2

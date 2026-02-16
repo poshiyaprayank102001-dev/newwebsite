@@ -19,12 +19,12 @@ export default function ProductsPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-black py-16 px-4 overflow-hidden">
-      <div className="container mx-auto max-w-7xl">
+    <div className="w-full overflow-hidden">
+      <div className="container mx-auto max-w-[1600px]">
         <ProductHeader />
         <ProductList products={products} />
         {allGalleryImages.length > 0 && <ProductGallery images={allGalleryImages} />}
       </div>
-    </main>
+    </div>
   );
 }
