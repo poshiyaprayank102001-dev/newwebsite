@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className="antialiased bg-black text-white">
+      <body className="antialiased bg-black text-white pb-40">
         <HeaderStateProvider>
           <HeaderWrapper />
           {children}

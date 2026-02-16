@@ -287,7 +287,7 @@ export default function Home() {
 
   return (
     <main 
-      className="min-h-screen flex flex-col items-center bg-black pb-32 gap-32"
+      className="min-h-screen flex flex-col items-center bg-black pb-96 gap-32"
       style={{ paddingTop: '35vh' }}
     >
       <AnimatePresence mode="wait">
@@ -298,10 +298,11 @@ export default function Home() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col gap-16 w-full"
+            className="flex flex-col gap-16 w-full pb-24"
           >
             <FoundedSection />
             <TodaySection />
+            <div className="h-40" />
           </motion.div>
         )}
         
@@ -312,10 +313,11 @@ export default function Home() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col gap-40 w-full"
+            className="flex flex-col gap-40 w-full pb-24"
           >
             <GlobalReachSection />
             <ExpansionSection />
+            <div className="h-40" />
           </motion.div>
         )}
       </AnimatePresence>
