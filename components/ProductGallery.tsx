@@ -2,7 +2,8 @@
 
 import { motion } from "motion/react";
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface ProductGalleryProps {
     images: string[];
@@ -10,30 +11,59 @@ interface ProductGalleryProps {
 
 export default function ProductGallery({ images }: ProductGalleryProps) {
     const containerRef = useRef<HTMLDivElement>(null);
+    // Triple the images to create a buffer for infinite scrolling
+    const extendedImages = [...images, ...images, ...images];
+
+    // Initialize scroll position to the middle set
+    useEffect(() => {
+        if (containerRef.current) {
+            const { current } = containerRef;
+            // Calculate width of a single set (approximate based on assumptions, or wait for load)
+            // Ideally we wait for images but for now we set it after render.
+            // Using a timeout to ensure layout is ready
+            setTimeout(() => {
+                const scrollWidth = current.scrollWidth;
+                const singleSetWidth = scrollWidth / 3;
+                current.scrollLeft = singleSetWidth;
+            }, 100);
+        }
+    }, [images]);
+
+    const handleScroll = () => {
+        if (containerRef.current) {
+            const { current } = containerRef;
+            const scrollWidth = current.scrollWidth;
+            const singleSetWidth = scrollWidth / 3;
+            const scrollLeft = current.scrollLeft;
+
+            // If we've scrolled into the third set (near the end), jump back to the second set
+            if (scrollLeft >= singleSetWidth * 2) {
+                current.scrollLeft = scrollLeft - singleSetWidth;
+            }
+            // If we've scrolled into the first set (near the start), jump forward to the second set
+            else if (scrollLeft <= 50) { // Using a small buffer instead of 0
+                current.scrollLeft = scrollLeft + singleSetWidth;
+            }
+        }
+    };
+
+    const scroll = (direction: 'left' | 'right') => {
+        if (containerRef.current) {
+            const { current } = containerRef;
+            const scrollAmount = direction === 'left' ? -current.offsetWidth / 2 : current.offsetWidth / 2;
+            current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+    };
 
     return (
         <section className="pt-32 pb-24 md:pt-40 md:pb-32">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, margin: "-50px" }}
-                transition={{ duration: 0.6 }}
-                className="mb-12 text-center"
-            >
-                <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 mt-6">
-                    Gallery
-                </h2>
-                <p className="text-white/60 text-lg mx-auto font-light mt-8 mb-12">
-                    Explore the details and textures of our premium materials
-                </p>
-            </motion.div>
-
             <div
                 ref={containerRef}
+                onScroll={handleScroll}
                 className="flex overflow-x-auto gap-6 px-4 pb-8 snap-x snap-mandatory scrollbar-hide md:px-8"
                 style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
-                {images.map((src, index) => (
+                {extendedImages.map((src, index) => (
                     <motion.div
                         key={index}
                         initial={{ opacity: 0, scale: 0.9 }}
@@ -41,7 +71,7 @@ export default function ProductGallery({ images }: ProductGalleryProps) {
                         viewport={{ once: true }}
                         transition={{
                             duration: 0.5,
-                            delay: index * 0.1,
+                            delay: (index % images.length) * 0.1, // Stagger based on original index
                             type: "spring",
                             stiffness: 100
                         }}
@@ -56,6 +86,24 @@ export default function ProductGallery({ images }: ProductGalleryProps) {
                         />
                     </motion.div>
                 ))}
+            </div>
+
+            {/* Navigation Arrows */}
+            <div className="flex justify-center gap-6 mt-8">
+                <button
+                    onClick={() => scroll('left')}
+                    className="p-0 text-white backdrop-blur-sm group"
+                    aria-label="Scroll left"
+                >
+                    <ChevronLeft className="w-6 h-6" />
+                </button>
+                <button
+                    onClick={() => scroll('right')}
+                    className="p-0 text-white backdrop-blur-sm group"
+                    aria-label="Scroll right"
+                >
+                    <ChevronRight className="w-6 h-6" />
+                </button>
             </div>
         </section>
     );

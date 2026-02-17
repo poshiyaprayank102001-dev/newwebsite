@@ -9,9 +9,9 @@ export default function ProductHeader() {
             variants={pageHeaderVariants}
             initial="hidden"
             animate="visible"
-            className="text-center mb-16"
+            className="text-center pb-5"
         >
-            <h1 className="text-5xl md:text-6xl font-bold mb-4 text-white tracking-tight">
+            <h1 className="text-5xl md:text-6xl font-bold text-white tracking-tight">
                 Our Products
             </h1>
             {/* <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto font-light">
