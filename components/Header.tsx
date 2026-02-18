@@ -4,8 +4,8 @@ import TrueFocus from "@/components/react-bits/TrueFocus";
 import { useHeaderState } from "@/context/HeaderStateContext";
 
 const Header = () => {
-  const { activeIndex } = useHeaderState();
-
+  const { activeIndex, isHeaderVisible } = useHeaderState();
+  
   const handleSegmentInteraction = (index: number) => {
     if (index === 1) {
       const globalSection = document.getElementById("section-global");
@@ -23,7 +23,7 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center py-3 md:py-5 bg-black/60 backdrop-blur-md">
+    <header className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-center py-3 md:py-5 bg-black/60 backdrop-blur-md transition-opacity duration-500 ${isHeaderVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
       <div className="w-full max-w-full overflow-visible flex items-center justify-center px-4">
         <TrueFocus
           sentence=" Small beginnings | Big dreams "
