@@ -12,6 +12,8 @@ interface TrueFocusProps {
   animationDuration?: number;
   pauseBetweenAnimations?: number;
   focusIndex?: number;
+  onSegmentClick?: (index: number) => void;
+  onSegmentHover?: (index: number) => void;
 }
 
 interface FocusRect {
@@ -30,7 +32,9 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
   glowColor = 'rgba(0, 255, 0, 0.6)',
   animationDuration = 0.5,
   pauseBetweenAnimations = 1,
-  focusIndex
+  focusIndex,
+  onSegmentClick,
+  onSegmentHover
 }) => {
   const words = sentence.split(separator);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -85,6 +89,9 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
       setLastActiveIndex(index);
       setCurrentIndex(index);
     }
+    if (onSegmentHover) {
+      onSegmentHover(index);
+    }
   };
 
   const handleMouseLeave = () => {
@@ -117,11 +124,13 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
                     : `blur(${blurAmount}px)`,
                 transition: `filter ${animationDuration}s ease`,
                 '--border-color': borderColor,
-                '--glow-color': glowColor
+                '--glow-color': glowColor,
+                cursor: 'pointer'
               } as React.CSSProperties
             }
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={handleMouseLeave}
+            onClick={() => onSegmentClick && onSegmentClick(index)}
           >
             {word}
           </span>

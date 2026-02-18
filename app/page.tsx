@@ -22,6 +22,7 @@ const FoundedSection = () => (
     transition={{ duration: 0.8, ease: "easeOut" }}
     style={{ scrollMarginTop: 'clamp(80px, 20vh, 35vh)' }}
     className="min-h-screen snap-start flex flex-col items-center justify-center gap-8 text-white w-full px-4"
+    id="section-founded"
   >
     {/* Desktop Horizontal Layout */}
     <div className="hidden lg:flex relative items-center justify-center w-full max-w-7xl mx-auto h-[60vh]">
@@ -29,7 +30,7 @@ const FoundedSection = () => (
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.3, duration: 0.8 }}
-        className="absolute top-0 left-0 text-[7vw] leading-none font-serif italic font-normal tracking-tighter text-white/90 whitespace-nowrap z-10"
+        className="absolute top-0 left-0 text-4xl sm:text-5xl md:text-6xl font-serif italic font-normal tracking-wide text-white/90 whitespace-nowrap z-10"
       >
         Founded
       </motion.span>
@@ -47,7 +48,7 @@ const FoundedSection = () => (
         initial={{ opacity: 0, x: 50 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.3, duration: 0.8 }}
-        className="absolute bottom-0 right-0 text-[7vw] leading-none font-serif italic font-normal text-white/90 whitespace-nowrap z-10"
+        className="absolute bottom-0 right-0 text-4xl sm:text-5xl md:text-6xl font-serif italic font-normal tracking-wide text-white/90 whitespace-nowrap z-10"
       >
         1986
       </motion.span>
@@ -101,6 +102,7 @@ const TodaySection = () => (
     viewport={{ once: true, margin: "-100px" }}
     transition={{ duration: 0.8, ease: "easeOut" }}
     className="min-h-screen snap-start flex flex-col items-center justify-center gap-8 text-white w-full px-4"
+    id="section-today"
   >
     {/* Desktop Horizontal Layout */}
     <div className="hidden lg:flex relative items-center justify-center w-full max-w-7xl mx-auto h-[60vh]">
@@ -108,7 +110,7 @@ const TodaySection = () => (
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.3, duration: 0.8 }}
-        className="absolute top-0 left-0 text-[7vw] leading-none font-serif italic font-normal tracking-tighter text-white/90 whitespace-nowrap z-10"
+        className="absolute top-0 left-0 text-4xl sm:text-5xl md:text-6xl leading-none font-serif italic font-normal tracking-wide text-white/90 whitespace-nowrap z-10"
       >
         Today
       </motion.span>
@@ -126,7 +128,7 @@ const TodaySection = () => (
         initial={{ opacity: 0, x: 50 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.3, duration: 0.8 }}
-        className="absolute bottom-0 right-0 text-[7vw] leading-none font-serif italic font-normal text-white/90 whitespace-nowrap z-10"
+        className="absolute bottom-0 right-0 text-4xl sm:text-5xl md:text-6xl leading-none font-serif italic font-normal tracking-wide text-white/90 whitespace-nowrap z-10"
       >
         <span className="font-normal font-mono text-white/90 leading-none">
           37
@@ -143,7 +145,7 @@ const TodaySection = () => (
         initial={{ opacity: 0, x: -30 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.3, duration: 0.8 }}
-        className="text-5xl sm:text-6xl font-serif italic font-normal tracking-wide text-white/80 self-start"
+        className="text-4xl sm:text-5xl md:text-6xl font-serif italic font-normal tracking-wide text-white/80 self-start"
       >
         Today
       </motion.span>
@@ -158,7 +160,7 @@ const TodaySection = () => (
         transition={{ delay: 0.5, duration: 0.8 }}
         className="flex flex-col items-end self-end"
       >
-        <span className="text-5xl sm:text-6xl font-normal font-mono text-white/90 leading-none">
+        <span className="text-4xl sm:text-5xl md:text-6xl font-normal font-mono text-white/90 leading-none">
           37
         </span>
         <span className="text-xs uppercase tracking-widest text-white/60 mt-1">
@@ -273,30 +275,62 @@ const GlobalReachSection = () => (
     viewport={{ once: true, margin: "-100px" }}
     transition={{ duration: 0.8, ease: "easeOut" }}
     className="min-h-screen snap-start flex flex-col items-center justify-center gap-8 text-white w-full px-4"
+    id="section-global"
   >
     {/* Label row */}
-    <div className="flex items-center justify-between w-full max-w-4xl mx-auto">
+    {/* Desktop Horizontal Layout */}
+    <div className="hidden lg:flex relative items-center justify-center w-full max-w-7xl mx-auto h-[60vh]">
       <motion.span
-        initial={{ opacity: 0, x: -30 }}
+        initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.3, duration: 0.8 }}
-        className="text-4xl sm:text-5xl md:text-6xl font-serif italic font-normal tracking-wide text-white/80"
+        className="absolute top-0 left-0 text-4xl sm:text-5xl md:text-6xl font-serif italic font-normal tracking-wide text-white/90 whitespace-nowrap z-30"
       >
         Global
       </motion.span>
+
+      <motion.div
+        initial={{ scale: 0.8, opacity: 0 }}
+        whileInView={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 0.5, duration: 0.8 }}
+        className="absolute left-[15%] top-1/2 -translate-y-1/2 w-[70vw] max-w-5xl z-20"
+      >
+        <MapComponent />
+      </motion.div>
+
       <motion.span
-        initial={{ opacity: 0, x: 30 }}
+        initial={{ opacity: 0, x: 50 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.3, duration: 0.8 }}
-        className="text-2xl sm:text-3xl md:text-4xl font-normal tracking-wide text-white/90"
+        className="absolute bottom-0 right-0 text-4xl sm:text-5xl md:text-6xl font-serif italic font-normal tracking-wide text-white/90 whitespace-nowrap z-30"
       >
         Reach
       </motion.span>
     </div>
 
-    {/* Map */}
-    <div className="w-full max-w-4xl mx-auto">
-      <MapComponent />
+    {/* Mobile/Tablet Stacked Layout */}
+    <div className="lg:hidden flex flex-col items-center w-full gap-6">
+      <motion.span
+        initial={{ opacity: 0, x: -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.3, duration: 0.8 }}
+        className="text-4xl sm:text-5xl md:text-6xl font-serif italic font-normal tracking-wide text-white/80 self-start"
+      >
+        Global
+      </motion.span>
+
+      <div className="w-full max-w-4xl mx-auto">
+        <MapComponent />
+      </div>
+
+      <motion.span
+        initial={{ opacity: 0, x: 30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.3, duration: 0.8 }}
+        className="text-4xl sm:text-5xl md:text-6xl font-normal tracking-wide text-white/90 self-end"
+      >
+        Reach
+      </motion.span>
     </div>
 
     <div className="text-center max-w-xl mx-auto space-y-2">
@@ -314,6 +348,7 @@ const ExpansionSection = () => (
     viewport={{ once: true, margin: "-100px" }}
     transition={{ duration: 0.8, ease: "easeOut" }}
     className="min-h-screen snap-start flex flex-col items-center justify-center gap-10 md:gap-16 text-white w-full px-4"
+    id="section-expansion"
   >
     <motion.h2
       initial={{ opacity: 0, scale: 0.9 }}
@@ -375,6 +410,81 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [setActiveIndex]);
 
+  // Auto-scroll logic
+  useEffect(() => {
+    const sections = ['section-founded', 'section-today', 'section-global', 'section-expansion', 'section-products', 'section-contact'];
+    let lastInteraction = Date.now();
+    let isScrolling = false;
+    
+    // Auto-advance delay in ms
+    const AUTO_SCROLL_DELAY = 5000;
+
+    const updateInteraction = () => {
+      lastInteraction = Date.now();
+    };
+
+    const checkAndScroll = () => {
+        if (isScrolling) return;
+
+        const now = Date.now();
+        if (now - lastInteraction > AUTO_SCROLL_DELAY) {
+            // Find current section index
+            const scrollPos = window.scrollY + window.innerHeight / 2;
+            let currentIndex = -1;
+            
+            for (let i = 0; i < sections.length; i++) {
+                const el = document.getElementById(sections[i]);
+                if (el) {
+                    const top = el.offsetTop;
+                    const height = el.offsetHeight;
+                    if (scrollPos >= top && scrollPos < top + height) {
+                        currentIndex = i;
+                        break;
+                    }
+                }
+            }
+
+            // Scroll to next if valid
+            if (currentIndex !== -1 && currentIndex < sections.length - 1) {
+                const nextEl = document.getElementById(sections[currentIndex + 1]);
+                if (nextEl) {
+                    isScrolling = true;
+                    // Log for debugging if needed
+                    // console.log("Auto-scrolling to", sections[currentIndex + 1]);
+                    
+                    nextEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    
+                    // Reset interaction timer to prevent double jump immediately
+                    lastInteraction = Date.now();
+                    
+                    // Allow scroll to complete before checking again
+                    setTimeout(() => {
+                        isScrolling = false;
+                    }, 1000); 
+                }
+            }
+        }
+    };
+
+    const intervalId = setInterval(checkAndScroll, 1000); // Check every second
+    
+    // Listeners to pause auto-scroll
+    window.addEventListener('wheel', updateInteraction);
+    window.addEventListener('touchstart', updateInteraction);
+    window.addEventListener('mousemove', updateInteraction);
+    window.addEventListener('keydown', updateInteraction);
+    window.addEventListener('click', updateInteraction);
+
+    return () => {
+        clearInterval(intervalId);
+        window.removeEventListener('wheel', updateInteraction);
+        window.removeEventListener('touchstart', updateInteraction);
+        window.removeEventListener('mousemove', updateInteraction);
+        window.removeEventListener('keydown', updateInteraction);
+        window.removeEventListener('click', updateInteraction);
+    };
+  }, []);
+
   const allGalleryImages = products.reduce<string[]>((acc, product) => {
     if (product.gallery) {
       return [...acc, ...product.gallery];
@@ -397,7 +507,7 @@ export default function Home() {
         <ExpansionSection />
       </div>
 
-      <div className="w-full h-screen overflow-y-auto snap-start flex justify-center bg-black">
+      <div id="section-products" className="w-full h-screen overflow-y-auto snap-start flex justify-center bg-black">
         <div className="w-full max-w-[1400px] px-4 sm:px-6 md:px-12 lg:px-16 py-16">
           <ProductHeader />
           <ProductList products={products} />
@@ -405,7 +515,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="h-screen overflow-y-auto snap-start bg-black flex flex-col items-center justify-center pt-2 pb-2 px-4 sm:px-6 md:px-12 lg:px-24">
+      <div id="section-contact" className="h-screen overflow-y-auto snap-start bg-black flex flex-col items-center justify-center pt-2 pb-2 px-4 sm:px-6 md:px-12 lg:px-24">
         <div className="w-full max-w-[1400px]">
 
           {/* Header Section */}

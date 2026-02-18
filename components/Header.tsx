@@ -4,7 +4,23 @@ import TrueFocus from "@/components/react-bits/TrueFocus";
 import { useHeaderState } from "@/context/HeaderStateContext";
 
 const Header = () => {
-  const { activeIndex, setActiveIndex } = useHeaderState();
+  const { activeIndex } = useHeaderState();
+
+  const handleSegmentInteraction = (index: number) => {
+    if (index === 1) {
+      const globalSection = document.getElementById("section-global");
+      if (globalSection) {
+        globalSection.scrollIntoView({ behavior: "smooth" });
+      }
+    } else if (index === 0) {
+      const foundedSection = document.getElementById("section-founded");
+        if (foundedSection) {
+            foundedSection.scrollIntoView({ behavior: "smooth" });
+        } else {
+             window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    }
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center py-3 md:py-5 bg-black/60 backdrop-blur-md">
@@ -19,6 +35,8 @@ const Header = () => {
           animationDuration={0.5}
           pauseBetweenAnimations={1}
           focusIndex={activeIndex}
+          onSegmentClick={handleSegmentInteraction}
+          onSegmentHover={handleSegmentInteraction}
         />
       </div>
     </header>
