@@ -24,7 +24,7 @@ export default function ProductList({ products }: ProductListProps) {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: false, margin: "-100px" }}
                             transition={{ type: "spring", stiffness: 80, damping: 25 }}
-                            className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-12 items-center"
+                            className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-center"
                         >
                             {/* Left Image */}
                             <motion.div

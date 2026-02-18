@@ -60,7 +60,7 @@ const FoundedSection = () => (
         initial={{ opacity: 0, x: -30 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.3, duration: 0.8 }}
-        className="text-5xl sm:text-6xl font-serif italic font-normal tracking-wide text-white/80 self-start"
+        className="text-4xl sm:text-6xl font-serif italic font-normal tracking-wide text-white/80 self-start"
       >
         Founded
       </motion.span>
@@ -359,7 +359,7 @@ const ExpansionSection = () => (
       EXPANSION
     </motion.h2>
 
-    <div className="grid grid-cols-2 md:grid-cols-2 gap-4 md:gap-8 w-full max-w-[90%]">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 w-full max-w-[90%]">
       {[
         { title: 'Ferrous Metals', icon: Factory, desc: 'Industrial steel trading' },
         { title: 'Non-Ferrous', icon: Anchor, desc: 'Copper & brass expertise' },
@@ -386,7 +386,7 @@ const ExpansionSection = () => (
 );
 
 export default function Home() {
-  const { setActiveIndex } = useHeaderState();
+  const { setActiveIndex, setIsHeaderVisible } = useHeaderState();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -394,6 +394,7 @@ export default function Home() {
 
       const sectionSmall = document.getElementById("small-beginnings");
       const sectionBig = document.getElementById("big-dreams");
+      const sectionExpansion = document.getElementById("section-expansion");
 
       if (sectionSmall && sectionBig) {
         if (scrollPosition >= sectionBig.offsetTop) {
@@ -402,13 +403,24 @@ export default function Home() {
           setActiveIndex(0);
         }
       }
+
+      // Hide header when reaching Expansion section or further down
+      if (sectionExpansion) {
+        // Using a slightly different threshold for hiding to make it feel natural
+        // When expansion section takes up significant viewport space
+        if (window.scrollY + window.innerHeight / 2 >= sectionExpansion.offsetTop) {
+          setIsHeaderVisible(false);
+        } else {
+          setIsHeaderVisible(true);
+        }
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [setActiveIndex]);
+  }, [setActiveIndex, setIsHeaderVisible]);
 
   // Auto-scroll logic
   useEffect(() => {
@@ -507,7 +519,7 @@ export default function Home() {
         <ExpansionSection />
       </div>
 
-      <div id="section-products" className="w-full h-screen overflow-y-auto snap-start flex justify-center bg-black">
+      <div id="section-products" className="w-full min-h-screen snap-start flex justify-center bg-black">
         <div className="w-full max-w-[1400px] px-4 sm:px-6 md:px-12 lg:px-16 py-16">
           <ProductHeader />
           <ProductList products={products} />
