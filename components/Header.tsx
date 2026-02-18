@@ -24,7 +24,7 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center py-3 md:py-5 bg-black/60 backdrop-blur-md">
-      <div className="w-full max-w-full overflow-hidden flex items-center justify-center px-4">
+      <div className="w-full max-w-full overflow-visible flex items-center justify-center px-4">
         <TrueFocus
           sentence=" Small beginnings | Big dreams "
           separator="|"
